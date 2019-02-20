@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+public class Permutate {
+  public static void main(String[] args){
+    ArrayList<String> result = new ArrayList<String>();
+    permutate(result);
+    
+    System.out.println("totally "+count+" permutations");
+  }
+  
+  public static char[] code={'a','b','c','d','e'};
+  public static long pwdLen=4;
+  public static long count=0;
+  public static void permutate(ArrayList<String> result){
+    if(result.size()==pwdLen){  //结束条件
+      count++;
+      System.out.println(result);
+      return;
+    }
+    for(int i=0;i<code.length;++i){
+      ArrayList<String> newResult=(ArrayList<String>)(result.clone());
+      newResult.add(String.valueOf(code[i]);
+      permutate(newResult); //递归调用
+    }
+  }
+}
