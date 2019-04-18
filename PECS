@@ -1,0 +1,15 @@
+https://www.jianshu.com/p/e5b8cd33ec94
+
+[java]你应该知道的泛型(Generic)与PECS原则
+
+所以，在上面的例子中，我们从篮子中拿水果，实际就是从集合里获取元素。简单的说，当只想从集合中获取元素，请把这个集合看成生产者，请使用<? extends T>，这就是Producer extends原则，PECS原则中的PE部分。
+
+因此，在上面的例子中的，我们将数据放进集合List<? super Apple> basket，所以这个篮子是实际上消费元素，例如Apple。简单的说，当你仅仅想增加元素到集合，把这个集合看成消费者，请使用<? super T>。这就是Consumer super原则，PECS原则中的CS部分。
+
+
+你还记得前面提到泛型是不可变吗？即List<Fruit>和List<Apple>之间没有任何继承关系。API的参数想要同时兼容2者，则只能使用PECS原则。这样做提升了API的灵活性。
+在java集合API中，大量使用了PECS原则，例如java.util.Collections中的集合复制的方法：
+
+public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+  ...
+}
